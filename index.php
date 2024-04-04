@@ -35,14 +35,14 @@
                     <div class="header__utility">
                         <div class="header__utility-connect">
                             <ul class="header__utility-list">
-                                <li class="header__utility-item">ĐĂNG KÍ |</li>
-                                <li class="header__utility-item"> ĐĂNG NHẬP</li>
+                                <li class="header__utility-item"><a class="header__utility-link" href="#">ĐĂNG KÍ</a> | <a class="header__utility-link" href="#">ĐĂNG NHẬP</a></li>
                             </ul>
                         </div>
 
                         <div class="header__utility-cart"><i class="fa-solid fa-magnifying-glass"></i></div>
                         <div class="header__utility-search"><i class="fa-solid fa-cart-shopping"></i></div>
                     </div>
+
                 </div>
             </div>
         </div>
