@@ -1,0 +1,37 @@
+.header{
+    background-color: var(--primary-color);
+}
+
+.headerbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 92px;
+}
+
+.header__logo-img{
+    width: 92px;
+    height: 92px;
+}
+
+.header__navigation-list{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    width: 300px;
+}
+
+.header__navigation-item{
+    font-size: 1.6rem;
+    color: var(--text-color);
+}
+
+.header__navigation-link{
+    text-decoration: none;
+    color: var(--text-color);
+
+}
+
+.header__navigation-link:hover{
+    color: var(--hover-color);
+}
