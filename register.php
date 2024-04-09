@@ -7,6 +7,7 @@
     <title>Bread</title>
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -35,19 +36,30 @@
                     <div class="header__utility">
                         <div class="header__utility-connect">
                             <ul class="header__utility-list">
-                                <li class="header__utility-item"><a class="header__utility-link" href="#">ĐĂNG KÍ</a> | <a class="header__utility-link" href="#">ĐĂNG NHẬP</a></li>
+                                <li class="header__utility-item"><a class="header__utility-link" href="#">ĐĂNG NHẬP</a></li>
                             </ul>
                         </div>
-
-                        <div class="header__utility-cart"><i class="fa-solid fa-magnifying-glass"></i></div>
-                        <div class="header__utility-search"><i class="fa-solid fa-cart-shopping"></i></div>
                     </div>
 
                 </div>
             </div>
         </div>
 
-        <div class="container"></div>
+        <!-- Body -->
+        <div class="container">
+
+            <div class="container__registerForm">
+                <form class="registerForm" action="#" method="post">
+                    <p class="registerForm__Title">Đăng Ký</p> 
+                    <input type="text" class="registerForm__input" name="registerForm-name" placeholder="Tên tài khoản" >
+                    <input type="password" class="registerForm__input" name="registerForm-name" placeholder="Mật Khẩu">
+                    <input type="button" class="registerForm__button" name="registerForm-name" value="Đăng Ký">
+                    <p class="registerForm__redirect"> Bạn đã có tài khoản?  <a class="registerForm__redirect-link" href="#">Đăng Nhập</a></p>
+                </form>
+            </div>
+            
+
+        </div>
 
         <div class="footer"></div>
     </div>

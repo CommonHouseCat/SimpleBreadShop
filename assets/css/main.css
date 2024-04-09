@@ -9,16 +9,17 @@
     height: 92px;
 }
 
-.header__logo-img{
-    width: 92px;
-    height: 92px;
+.header__logo-img {
+    height: 120px;
+    width: 200px;
+    margin-left: 50px;
 }
 
 .header__navigation-list{
     display: flex;
     justify-content: space-around;
     list-style-type: none;
-    width: 300px;
+    width: 500px;
 }
 
 .header__navigation-item{
@@ -40,6 +41,7 @@
     display: flex;
     width:290px;
     justify-content: space-between;
+    margin-right: 50px;
 }
 
 .header__utility-list{
