@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 92px;
+    height: 12vh;
 }
 
 .header__logo-img {
@@ -20,6 +20,7 @@
     justify-content: space-around;
     list-style-type: none;
     width: 500px;
+    margin-left: 100px;
 }
 
 .header__navigation-item{

@@ -19,13 +19,13 @@
             <div class="grid">
                 <div class="headerbar">
                     <div class="header__logo">
-                        <img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo">
+                       <a class="header__logo-link" href="./index.php"><img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo"></a> 
                     </div>
 
 
                     <div class="header__navigation">
                         <ul class="header__navigation-list">
-                            <li class="header__navigation-item"><a class="header__navigation-link" href="#">TRANG CHỦ</a></li>
+                            <li class="header__navigation-item"><a class="header__navigation-link" href="./index.php">TRANG CHỦ</a></li>
                             <li class="header__navigation-item"><a class="header__navigation-link" href="#">GIỚI THIỆU</a></li>
                             <li class="header__navigation-item"><a class="header__navigation-link" href="#">LIÊN HỆ</a></li>
                         </ul>
@@ -35,7 +35,7 @@
                     <div class="header__utility">
                         <div class="header__utility-connect">
                             <ul class="header__utility-list">
-                                <li class="header__utility-item"><a class="header__utility-link" href="#">ĐĂNG KÍ</a> | <a class="header__utility-link" href="#">ĐĂNG NHẬP</a></li>
+                                <li class="header__utility-item"><a class="header__utility-link" href="./register.php">ĐĂNG KÝ</a> | <a class="header__utility-link" href="./logIn.php">ĐĂNG NHẬP</a></li>
                             </ul>
                         </div>
 
