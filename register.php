@@ -20,15 +20,15 @@
             <div class="grid">
                 <div class="headerbar">
                     <div class="header__logo">
-                    <a class="header__logo-link" href="./index.php"><img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo"></a>
+                        <a class="header__logo-link" href="./index.php"><img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo"></a>
                     </div>
 
 
                     <div class="header__navigation">
                         <ul class="header__navigation-list">
                             <li class="header__navigation-item"><a class="header__navigation-link" href="./index.php">TRANG CHỦ</a></li>
-                            <li class="header__navigation-item"><a class="header__navigation-link" href="#">GIỚI THIỆU</a></li>
-                            <li class="header__navigation-item"><a class="header__navigation-link" href="#">LIÊN HỆ</a></li>
+                            <li class="header__navigation-item"><a class="header__navigation-link" href="./introduction.php">GIỚI THIỆU</a></li>
+                            <li class="header__navigation-item"><a class="header__navigation-link" href="./contact.php">LIÊN HỆ</a></li>
                         </ul>
                     </div>
 

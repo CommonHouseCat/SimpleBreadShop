@@ -1,5 +1,13 @@
 .header{
     background-color: var(--primary-color);
+    top: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+}
+
+.main{
+    margin-top: 16vh;
 }
 
 .headerbar{

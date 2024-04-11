@@ -5,6 +5,9 @@
     margin-right: 100px;
 }
 
+.main{
+    margin-top: 0;
+}
 
 .header__navigation-list{
     display: flex;
@@ -18,8 +21,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 88vh; 
-    background-image: url('../image/bread2.jpg');
+    height: 100vh; 
+    background-image: url('../image/register_background.jpg');
     background-size: cover;
     background-position: center;
 }
