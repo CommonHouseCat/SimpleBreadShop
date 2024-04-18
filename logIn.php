@@ -53,7 +53,7 @@
                     <p class="registerForm__Title">Đăng Nhập</p> 
                     <input type="text" class="registerForm__input" name="registerForm-name" placeholder="Tên tài khoản" required>
                     <input type="password" class="registerForm__input" name="registerForm-name" placeholder="Mật Khẩu" required>
-                    <input type="button" class="registerForm__button" name="registerForm-name" value="Đăng Nhập">
+                    <input type="submit" class="registerForm__button" name="registerForm-name" value="Đăng Nhập">
                     <p class="registerForm__redirect"> Bạn chưa có tài khoản?  <a class="registerForm__redirect-link" href="#">Đăng Ký</a></p>
                 </form>
             </div>

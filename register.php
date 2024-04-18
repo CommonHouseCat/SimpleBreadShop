@@ -55,7 +55,7 @@
                     <input type="tel" class="registerForm__input" name="registerForm-name" placeholder="Số Điện Thoại"  pattern="[0-9]{12}" required>
                     <input type="password" class="registerForm__input" name="registerForm-name" placeholder="Mật Khẩu" required>
                     <input type="password" class="registerForm__input" name="registerForm-name" placeholder="Nhập Lại Mật Khẩu" required>
-                    <input type="button" class="registerForm__button" name="registerForm-name" value="Đăng Ký">
+                    <input type="submit" class="registerForm__button" name="registerForm-name" value="Đăng Ký">
                     <p class="registerForm__redirect"> Bạn đã có tài khoản?  <a class="registerForm__redirect-link" href="#">Đăng Nhập</a></p>
                 </form>
             </div>
