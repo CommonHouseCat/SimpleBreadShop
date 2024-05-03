@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +13,8 @@
     <link rel="stylesheet" href="./assets/css/contact.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../CT214H/assets/font/fontawesome-free-6.5.2-web/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.2-web/css/all.min.css">
 </head>
 
 <body>
@@ -20,13 +23,13 @@
             <div class="grid">
                 <div class="headerbar">
                     <div class="header__logo">
-                        <a class="header__logo-link" href="./index.php"><img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo"></a> 
+                        <a class="header__logo-link" href="./index.php"><img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo"></a>
                     </div>
 
 
                     <div class="header__navigation">
                         <ul class="header__navigation-list">
-                            <li class="header__navigation-item"><a class="header__navigation-link" href="./index.php">TRANG CHỦ</a></li>
+                            <li class="header__navigation-item"><a class="header__navigation-link js-base" href="">TRANG CHỦ</a></li>
                             <li class="header__navigation-item"><a class="header__navigation-link" href="./introduction.php">GIỚI THIỆU</a></li>
                             <li class="header__navigation-item"><a class="header__navigation-link" href="./contact.php">LIÊN HỆ</a></li>
                         </ul>
@@ -38,16 +41,36 @@
                             <ul class="header__utility-list">
                                 <li class="header__utility-item"><a class="header__utility-link" href="./register.php">ĐĂNG KÝ</a> | <a class="header__utility-link" href="./logIn.php">ĐĂNG NHẬP</a></li>
                             </ul>
+
+                            <div class="header__utility-userIf mr-50" style="display: none;">
+                                <img src="./assets/image/images.png" alt="" class="header__utility-img">
+                                <h4 class="header__utility-uname">
+                                </h4>
+                            </div>
+
+                            <div class="header__utility-user-ability">
+                                <div class="user__ability-list">
+                                    <li class="user__ability-item">
+                                        <a href="./personal/personalPage.php" class="user__ability-link">Hồ Sơ Của Tôi</a>
+                                    </li>
+                                    <li class="user__ability-item">
+                                        <a href="./cart/cart.php" class="user__ability-link">Đơn Mua</a>
+                                    </li>
+                                    <li class="user__ability-item">
+                                        <a href="./config/logout.php" class="user__ability-link">Đăng Xuất</a>
+                                    </li>
+                                </div>
+                            </div>
                         </div>
-                        <div class="header__utility-cart"><i class="fa-solid fa-magnifying-glass"></i></div>
-                        <div class="header__utility-search"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <div class="header__utility-search-icon header__utility-search-icon--disable"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="header__utility-cart"><a class="cart-link" href="./cart/cart.php"><i class="fa-solid fa-cart-shopping"></i></a></div>
                     </div>
 
                 </div>
             </div>
-        </div>              
-        
-        
+        </div>
+
+
         <div class="container">
             <div class="container__box">
                 <div class="container__contact">
@@ -56,7 +79,7 @@
 
                     <h2 class="container__contact-title">EMAIL:</h2>
                     <p class="container__contact-content"><a href="https://mail.google.com" class="container__contact-content-link">info@BreadCanTho.com</a></p>
-                </div> 
+                </div>
 
                 <div class="container__contact">
                     <h2 class="container__contact-title">SỐ ĐIỆN THOẠI:</h2>
@@ -82,3 +105,34 @@
 </body>
 
 </html>
+
+<script>
+    var username = "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>";
+    const userIF = document.querySelector('.header__utility-userIf');
+    const userList = document.querySelector('.header__utility-list');
+    const userAb = document.querySelector('.header__utility-user-ability');
+    const baseLink = document.querySelector('.js-base');
+    const cartLink = document.querySelector('.cart-link');
+    const logoLink = document.querySelector('.header__logo-link');
+
+    if (username !== '') {
+        // Hiển thị username
+        userIF.style.display = "flex";
+        userList.style.display = "none";
+        document.querySelector(".header__utility-uname").textContent = username;
+        console.log("Đăng nhập thành công");
+        baseLink.href = "./homepage.php";
+        cartLink.href = "./cart/cart.php";
+        logoLink.href = "./homepage.php";
+    } else {
+        if (userAb) {
+            userAb.style.display = "none";
+        }
+        if (baseLink) {
+            baseLink.href = "./index.php";
+            cartLink.href = "#";
+            document.querySelector('.header__utility-cart').classList.add('header__utility-cart--disabled');
+            logoLink = "./index.php"
+        }
+    }
+</script>

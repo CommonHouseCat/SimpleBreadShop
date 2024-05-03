@@ -46,6 +46,9 @@
     width: 460px;
     height: 30px;
     padding: 10px;
+    outline: none;
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
 }
 
 .registerForm__button{
@@ -55,6 +58,14 @@
     background-color: var(--dark-orange-color);
     color: var(--white-color);
     font-size: 16px;
+    opacity: 1;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.registerForm__button:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 .registerForm__redirect-link:hover{

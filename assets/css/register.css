@@ -46,15 +46,26 @@
     width: 460px;
     height: 30px;
     padding: 10px;
+    outline: none;
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
 }
 
 .registerForm__button{
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
     margin-top: 10px;
     width: 460px;
     height: 30px;
     background-color: var(--dark-orange-color);
     color: var(--white-color);
     font-size: 16px;
+    opacity: 1;
+}
+
+.registerForm__button:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 .registerForm__redirect-link:hover{

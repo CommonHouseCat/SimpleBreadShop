@@ -1,3 +1,8 @@
+<?php
+session_start();
+include './config/db_connection.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +15,7 @@
     <link rel="stylesheet" href="./assets/css/register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../CT214H/assets/font/fontawesome-free-6.5.2-web/css/all.min.css">
 </head>
 
@@ -49,17 +54,18 @@
         <div class="container">
 
             <div class="container__registerForm">
-                <form class="registerForm" action="#" method="post">
-                    <p class="registerForm__Title">Đăng Ký</p> 
-                    <input type="text" class="registerForm__input" name="registerForm-name" placeholder="Tên tài khoản" required>
-                    <input type="tel" class="registerForm__input" name="registerForm-name" placeholder="Số Điện Thoại"  pattern="[0-9]{12}" required>
-                    <input type="password" class="registerForm__input" name="registerForm-name" placeholder="Mật Khẩu" required>
-                    <input type="password" class="registerForm__input" name="registerForm-name" placeholder="Nhập Lại Mật Khẩu" required>
-                    <input type="submit" class="registerForm__button" name="registerForm-name" value="Đăng Ký">
-                    <p class="registerForm__redirect"> Bạn đã có tài khoản?  <a class="registerForm__redirect-link" href="#">Đăng Nhập</a></p>
+                <form class="registerForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <p class="registerForm__Title">Đăng Ký</p>
+                    <input type="text" class="registerForm__input" name="username" placeholder="Tên tài khoản" required>
+                    <input type="text" class="registerForm__input" name="phone" placeholder="Số Điện Thoại" pattern="[0-9]{10}" required>
+                    <input type="password" class="registerForm__input" id="passwd" name="passwd" placeholder="Mật Khẩu" required>
+                    <input type="password" class="registerForm__input" id="confirm_pass" name="confirm_pass" placeholder="Nhập Lại Mật Khẩu" required>
+                    <span id="passError" style="color: red; display: none;">Mật khẩu không khớp!</span>
+                    <input type="submit" class="registerForm__button" name="" value="Đăng Ký">
+                    <p class="registerForm__redirect"> Bạn đã có tài khoản? <a class="registerForm__redirect-link" href="./logIn.php">Đăng Nhập</a></p>
                 </form>
             </div>
-            
+
 
         </div>
 
@@ -67,4 +73,59 @@
     </div>
 </body>
 
+
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    // Sử dụng prepared statement để tránh SQL injection
+    $nameCheck = $conn->prepare("SELECT * FROM userinfo WHERE user_name = ?");
+    $nameCheck->bind_param("s", $username);
+    $nameCheck->execute();
+    $checkRe = $nameCheck->get_result();
+    if ($checkRe->num_rows > 0) {
+        echo "
+            <script>
+            alert('Tài Khoản Đã Tồn Tại! Vui Lòng Thử Lại!!');
+            window.location.href = 'register.php';
+            </script>";
+    } else {
+        $register = 'p_register';
+
+        $username = $conn->real_escape_string($_POST['username']);
+        $phone = $conn->real_escape_string($_POST['phone']);
+        $userpasswd = $conn->real_escape_string($_POST['passwd']);
+        $confirmPass = $conn->real_escape_string($_POST['confirm_pass']);
+
+        if ($userpasswd == $confirmPass) {
+            $sql_query = $conn->prepare("CALL $register(?, ?, ?)");
+            $sql_query->bind_param("sss", $username, $userpasswd, $phone);
+            $sql_query->execute();
+
+            if ($sql_query->affected_rows > 0) {
+                echo "
+                <script>
+                alert('Đăng ký tài khoản thành công!!!');
+                window.location.href = 'logIn.php';
+                </script>";
+                exit();
+            } else {
+                echo "
+                <script>
+                alert('Đăng ký tài khoản không thành công!!!');
+                window.location.href = 'register.php';
+                </script>";
+                exit();
+            }
+        } else {
+            echo "
+            <script>
+            alert('Mật Khẩu Của Bạn Không Đúng!!!');
+            window.location.href = 'register.php';
+            </script>";
+        }
+    }
+}
+
+?>

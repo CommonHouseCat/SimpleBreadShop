@@ -1,3 +1,8 @@
+<?php
+session_start();
+include './config/db_connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +15,7 @@
     <link rel="stylesheet" href="./assets/css/logIn.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../CT214H/assets/font/fontawesome-free-6.5.2-web/css/all.min.css">
 </head>
 
@@ -49,15 +54,15 @@
         <div class="container">
 
             <div class="container__registerForm">
-                <form class="registerForm" action="#" method="post">
-                    <p class="registerForm__Title">Đăng Nhập</p> 
-                    <input type="text" class="registerForm__input" name="registerForm-name" placeholder="Tên tài khoản" required>
-                    <input type="password" class="registerForm__input" name="registerForm-name" placeholder="Mật Khẩu" required>
-                    <input type="submit" class="registerForm__button" name="registerForm-name" value="Đăng Nhập">
-                    <p class="registerForm__redirect"> Bạn chưa có tài khoản?  <a class="registerForm__redirect-link" href="#">Đăng Ký</a></p>
+                <form class="registerForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <p class="registerForm__Title">Đăng Nhập</p>
+                    <input type="text" class="registerForm__input" name="username" placeholder="Tên tài khoản" required>
+                    <input type="password" class="registerForm__input" name="passwd" placeholder="Mật Khẩu" required>
+                    <input type="submit" class="registerForm__button" name="" value="Đăng Nhập">
+                    <p class="registerForm__redirect"> Bạn chưa có tài khoản? <a class="registerForm__redirect-link" href="./register.php">Đăng Ký</a></p>
                 </form>
             </div>
-            
+
 
         </div>
 
@@ -66,3 +71,39 @@
 </body>
 
 </html>
+
+<?php
+if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['passwd'];
+
+    // Kiểm tra thông tin đăng nhập trong cơ sở dữ liệu
+    $sql_query = "SELECT * FROM userInfo WHERE user_name = '$username' AND user_passwd = '$password'";
+    $result = mysqli_query($conn, $sql_query);
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result); // Lấy dữ liệu từ kết quả truy vấn
+        $userRole = $row['user_role']; // Lấy vai trò của người dùng
+
+        if ($username == "admin" && $userRole == 1) {
+            $_SESSION['username'] = $username;
+            echo "<script>
+                alert ('Đăng Nhập Thành Công');     
+                window.location.href = './admin/admin.php';    
+            </script>";
+            exit(); // Kết thúc kịch bản để ngăn chặn mã tiếp tục chạy
+        } else {
+            $_SESSION['username'] = $username;
+            echo "<script>
+                alert ('Đăng Nhập Thành Công');     
+                window.location.href = 'homepage.php';    
+            </script>";
+            exit(); // Kết thúc kịch bản
+        }
+    } else {
+        echo "<script>
+                alert('Invalid username or password.');        
+            </script>";
+    }
+}
+?>

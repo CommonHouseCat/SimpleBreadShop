@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +13,8 @@
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../CT214H/assets/font/fontawesome-free-6.5.2-web/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.2-web/css/all.min.css">
 </head>
 
 <body>
@@ -19,7 +23,7 @@
             <div class="grid">
                 <div class="headerbar">
                     <div class="header__logo">
-                        <a class="header__logo-link" href="./index.php"><img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo"></a> 
+                        <a class="header__logo-link" href="./index.php"><img class="header__logo-img" src="./assets/image/Bread_logo2.png" alt="store_logo"></a>
                     </div>
 
 
@@ -39,8 +43,28 @@
                             </ul>
                         </div>
 
-                        <div class="header__utility-cart"><i class="fa-solid fa-magnifying-glass"></i></div>
-                        <div class="header__utility-search"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <div class="header__utiliti-search">
+                            <div class="header__utility-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="search__form-container">
+                                <div class="header__search">
+                                    <div class="header__search-input-wrap">
+                                        <input type="text" name="breadname" id="header__search-input" class="header__search-input" placeholder="Nhập để tìm kiếm sản phẩm" onkeyup="bread_search(); showResultSearch();">
+
+                                        <!-- history search -->
+                                        <div class="header__search-result">
+                                            <h3 class="header__search-result-heading">Kết quả tìm kiếm</h3>
+                                            <ul class="header__search-result-list" id="header__search-list">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button class="header__search-btn" type="submit">
+                                        <i class="header__search-btn-icon fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="header__utility-cart"><a href="./cart/cart.php"><i class="fa-solid fa-cart-shopping"></i></a></div>
                     </div>
 
                 </div>
@@ -54,50 +78,54 @@
                         <nav class="category">
                             <h3 class="category__title"> <i class="category__title-icon fa-solid fa-list"></i> Danh Mục</h3>
                             <ul class="category__list">
-                                <li class="category__item category__item-active">
-                                    <a href="#" class="category__item-link">Buns</a>
+                                <!-- category__item--active -->
+                                <li class="category__item">
+                                    <a href="index.php?category=all" class="category__item-link">Tất Cả</a>
                                 </li>
                                 <li class="category__item">
-                                    <a href="#" class="category__item-link">Toasts</a>
+                                    <a href="index.php?category=Buns" class="category__item-link">Buns</a>
                                 </li>
                                 <li class="category__item">
-                                    <a href="#" class="category__item-link">Sandwiches</a>    
+                                    <a href="index.php?category=Toasts" class="category__item-link">Toasts</a>
                                 </li>
                                 <li class="category__item">
-                                    <a href="#" class="category__item-link">Cakes</a>
+                                    <a href="index.php?category=Sandwiches" class="category__item-link">Sandwiches</a>
                                 </li>
                                 <li class="category__item">
-                                    <a href="#" class="category__item-link">Cake Slices</a>
+                                    <a href="index.php?category=Cakes" class="category__item-link">Cakes</a>
                                 </li>
                                 <li class="category__item">
-                                    <a href="#" class="category__item-link">Dry Cakes</a>
+                                    <a href="index.php?category=CakeSlices" class="category__item-link">Cake Slices</a>
                                 </li>
                                 <li class="category__item">
-                                    <a href="#" class="category__item-link">Pudding</a>
+                                    <a href="index.php?category=DryCakes" class="category__item-link">Dry Cakes</a>
                                 </li>
                                 <li class="category__item">
-                                    <a href="#" class="category__item-link">Cookies</a>
+                                    <a href="index.php?category=Pudding" class="category__item-link">Pudding</a>
+                                </li>
+                                <li class="category__item">
+                                    <a href="index.php?category=Cookies" class="category__item-link">Cookies</a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    
+
                     <div class="grid__column-10">
                         <div class="home__filter">
                             <span class="home__filter-label">Sắp xếp theo</span>
-                            <button class="btn home__filter-btn btn__primary">Mới Nhất</button>
+                            <!-- <button class="btn home__filter-btn btn__primary">Mới Nhất</button>
                             <button class="btn home__filter-btn">Cũ Nhất</button>
-                            <button class="btn home__filter-btn">Bán Chạy Nhất</button>
+                            <button class="btn home__filter-btn">Bán Chạy Nhất</button> -->
                             <div class="select__input">
                                 <span class="select__input-label">Giá</span>
                                 <i class="select__input-icon fas fa-angle-down"></i>
                                 <!-- Dropdown options -->
                                 <ul class="select__input-list">
                                     <li class="select__input-item">
-                                        <a href="" class="select__input-link">Giá: Thấp đến Cao</a>                                        
+                                        <a href="index.php?category=small_to_large" class="select__input-link">Giá: Thấp đến Cao</a>
                                     </li>
-                                    <li class="select__input-item">                                      
-                                        <a href="" class="select__input-link">Giá: Cao đến Thấp</a>
+                                    <li class="select__input-item">
+                                        <a href="index.php?category=large_to_small" class="select__input-link">Giá: Cao đến Thấp</a>
                                     </li>
                                 </ul>
                             </div>
@@ -105,16 +133,9 @@
 
                         <div class="home__product">
                             <div class="grid__row product__row">
-                                <div class="grid__column-2 ">
-                                    <div class="home__product-item">
-                                        <div class="home__product-item-img" style="background-image: url(./assets/image/BaconCheeseOnion.png);"></div>
-                                        <h4 class="home__product-item-name">Bacon Cheese Onion</h4>
-                                        <div class="home__product-item-price">32.000đ</div>
-                                        <div class="btn home__product-item-addToCartBtn">Thêm vào vỏ hàng</div>
-                                    </div>
-                                </div>
+                                <?php include './product.php'; ?>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -124,5 +145,18 @@
         <div class="footer"></div>
     </div>
 </body>
+
+<script>
+    const search = document.querySelector('.header__search');
+    document.querySelector('.header__utility-search-icon').addEventListener('click', function() {
+        search.style.display = 'block';
+    });
+    const index = document.querySelector('.index__container');
+    index.addEventListener('click', function() {
+        search.style.display = 'none';
+    });
+</script>
+
+<script src="./search.js"></script>
 
 </html>
