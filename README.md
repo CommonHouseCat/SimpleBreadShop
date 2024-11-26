@@ -1,1 +1,2 @@
-# CT214H-Lap_Trinh_Web
+# CT214H-Web-Development
+This is a course project 
